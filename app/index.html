@@ -1,0 +1,116 @@
+<!-- app/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OllamaPromptLab - Prompt Engineering Workspace</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <h1>OllamaPromptLab</h1>
+      </div>
+      <div class="connection-info">
+        <div id="connection-status" class="status-pill">
+          <span class="status-indicator"></span>
+          <span id="status-text">Checking connection...</span>
+        </div>
+        <div class="model-selector">
+          <select id="model-select">
+            <option value="">Loading models...</option>
+          </select>
+        </div>
+      </div>
+    </header>
+    
+    <div class="main-content">
+      <div class="sidebar">
+        <div class="section">
+          <h3>Prompt Templates</h3>
+          <ul id="template-list" class="template-list">
+            <li class="loading">Loading templates...</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h3>Saved Prompts</h3>
+          <ul id="saved-prompts" class="saved-prompts">
+            <li class="empty">No saved prompts</li>
+          </ul>
+          <button id="new-prompt-btn" class="btn">+ New Prompt</button>
+        </div>
+      </div>
+      
+      <div class="workspace">
+        <div class="prompt-editor">
+          <div class="editor-header">
+            <input type="text" id="prompt-title" placeholder="Untitled Prompt">
+            <div class="editor-actions">
+              <button id="save-prompt-btn" class="btn">Save</button>
+              <button id="run-prompt-btn" class="btn primary">Run</button>
+            </div>
+          </div>
+          
+          <div class="editor-tabs">
+            <div class="tab active" data-tab="system">System Prompt</div>
+            <div class="tab" data-tab="user">User Prompt</div>
+            <div class="tab" data-tab="parameters">Parameters</div>
+          </div>
+          
+          <div class="editor-panels">
+            <div class="panel active" id="system-panel">
+              <textarea id="system-prompt" placeholder="Enter system prompt here..."></textarea>
+            </div>
+            <div class="panel" id="user-panel">
+              <textarea id="user-prompt" placeholder="Enter user prompt here..."></textarea>
+            </div>
+            <div class="panel" id="parameters-panel">
+              <div class="parameter-group">
+                <label for="temperature">Temperature:</label>
+                <input type="range" id="temperature" min="0" max="1" step="0.01" value="0.7">
+                <span id="temperature-value">0.7</span>
+              </div>
+              <div class="parameter-group">
+                <label for="top-p">Top P:</label>
+                <input type="range" id="top-p" min="0" max="1" step="0.01" value="0.9">
+                <span id="top-p-value">0.9</span>
+              </div>
+              <div class="parameter-group">
+                <label for="max-tokens">Max Tokens:</label>
+                <input type="number" id="max-tokens" min="1" max="4096" value="2048">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="response-area">
+          <div class="response-header">
+            <h3>Response</h3>
+            <div class="response-actions">
+              <button id="copy-response-btn" class="btn small">Copy</button>
+              <button id="clear-response-btn" class="btn small">Clear</button>
+            </div>
+          </div>
+          <div id="response-content" class="response-content">
+            <p class="placeholder">Run a prompt to see results here</p>
+          </div>
+          <div id="response-metadata" class="response-metadata">
+            <div class="metadata-item">
+              <span class="label">Time:</span>
+              <span id="generation-time" class="value">-</span>
+            </div>
+            <div class="metadata-item">
+              <span class="label">Tokens:</span>
+              <span id="token-count" class="value">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

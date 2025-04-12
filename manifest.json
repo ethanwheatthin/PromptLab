@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "OllamaPromptLab",
+    "version": "1.0.0",
+    "description": "Advanced prompt engineering workspace for local Ollama LLM models",
+    "icons": {
+     
+    },
+    "action": {
+      "default_popup": "popup/popup.html",
+      "default_icon": {
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+      "storage",
+      "tabs"
+    ],
+    "host_permissions": [
+      "http://localhost:11434/*",
+      "http://127.0.0.1:11434/*"
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+    }
+  }
